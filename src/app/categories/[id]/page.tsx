@@ -7,7 +7,7 @@ import CategoryProducts from "@/components/client/CategoryProducts";
 
 const getCategory = async (id: string) => {
     try {
-        const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/categories/${id}`, { cache: "force-cache" });
+        const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories/${id}`, { cache: "force-cache" });
         const data: ICategory = await res.json();
         return data;
     } catch (error) {
