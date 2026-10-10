@@ -10,7 +10,7 @@ const NavBar = async () => {
 
     return (
         <div className="shadow-sm">
-            <div className="navbar  md:px-12 lg:px-24 bg-base-200">
+            <div className="navbar shadow-xs md:px-12 lg:px-24 bg-base-200">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,7 +45,7 @@ const NavBar = async () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-2">
                     <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
                     <Link href='/sign-up' className="btn btn-accent">Sign Up</Link>
                 </div>

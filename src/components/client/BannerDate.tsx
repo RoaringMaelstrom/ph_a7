@@ -7,10 +7,10 @@ const BannerDate = () => {
     const year = new Date().getFullYear()
 
     return (
-        <div className="flex text-left gap-1">
-            <div>{`${day}, ${date}`}</div>
-            <div>{` ${month}, ${year}`}</div>
-        </div>
+            <div className="font-bold flex-col md:flex-row text-left gap-1 ">
+                <div className="badge badge-soft badge-success md:rounded-r-none">{`${day}, ${date}`}</div>
+                <div className="badge badge-soft badge-success md:rounded-l-none">{` ${month}, ${year}`}</div>
+            </div>
     );
 };
 

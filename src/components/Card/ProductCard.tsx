@@ -8,7 +8,7 @@ interface ProductCardProp {
 
 const ProductCard = ({ product }: ProductCardProp) => {
     return (
-        <div className="bg-base-200 p-5 rounded-xl">
+        <div className="bg-base-200 p-5 rounded-xl border-2 border-base-300">
             <div className="flex gap-3">
                 <div className="text-5xl bg-zinc-300 dark:bg-black p-3 rounded-xl">{product.categoryIcon}</div>
                 <div>{product.slug} <br /> Per {product.unit}</div>

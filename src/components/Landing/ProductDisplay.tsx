@@ -37,7 +37,7 @@ const ProductDisplay = async () => {
 
 
             {/*All Products*/}
-            <div className=" flex flex-col gap-4 py-5">
+            <div className=" flex flex-col gap-4 py-5" id="All_Products">
                 <h1 className="font-bold text-xl">ALL Products</h1>
                 <h2>{`Total ${allProducts.length} Products are being shown`}</h2>
 
