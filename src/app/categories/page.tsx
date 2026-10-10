@@ -4,9 +4,9 @@ import { ICategory } from "@/types/ICategory";
 
 import Link from "next/link";
 
-const getCategories = async() => {
+const getCategories = async () => {
     try {
-        const res = await fetch("https://api.api-store.workers.dev/api/bazardor/categories", {cache: "force-cache"});
+        const res = await fetch("https://openapi.programming-hero.com/api/bazardor/categories", { cache: "force-cache" });
         const data: ICategory[] = await res.json();
         return data;
 
@@ -16,8 +16,14 @@ const getCategories = async() => {
     }
 }
 
-const CategoriesPage = async() => {
+const CategoriesPage = async () => {
     const categories: ICategory[] = await getCategories();
+
+    if (categories.length === 0) {
+        return <div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="text-5xl bg-base-300 p-4 rounded-xl">FAILED TO LOAD PRODUCTS</h1>
+            <Link href="/"><button className="btn btn-error">Click here to return to home</button></Link></div>;
+    }
+    
     return (
         <div className="px-30 flex flex-col gap-15 md:p-12 bg-zinc-300 dark:bg-black">
             <div className="text-5xl">Categories Available</div>

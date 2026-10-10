@@ -18,13 +18,13 @@ const getCategory = async (id: string) => {
 
 const getCategoryProducts = async (id: string) => {
     try {
-        const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products?category=${id}`, { cache: "force-cache" });
+        const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${id}`, { cache: "force-cache" });
         const data: IProduct[] = await res.json();
         return data;
 
     } catch (error) {
         console.error("Error fetching category products ", error);
-        return null;
+        return [];
     }
 }
 
@@ -43,7 +43,7 @@ const CategoryDetailsPage = async ({ params }: CategoryDetailsProps) => {
             <Link href="/"><button className="btn btn-error">Click here to return to home</button></Link></div>;
     }
 
-    if (products === null) {
+    if (products.length === 0) {
         return <div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="text-5xl bg-base-300 p-4 rounded-xl">FAILED TO LOAD PRODUCTS</h1>
             <Link href="/"><button className="btn btn-error">Click here to return to home</button></Link></div>;
     }

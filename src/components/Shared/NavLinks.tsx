@@ -6,37 +6,37 @@ export const instant = false
 const NavLinks = () => {
     const pathname = usePathname()
     return (
-        <nav className='menu flex flex-col md:flex-row menu-horizontal px-1 gap-4'>
+        <nav className='menu flex flex-col lg:flex-row menu-horizontal px-1 gap-4'>
             <Link className={`link ${pathname === '/categories/chal' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/chal">
-                Chal
+                🍚 Chal
             </Link>
 
             <Link className={`link ${pathname === '/categories/dal' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/dal">
-                Dal
+                🫘 Dal
             </Link>
 
             <Link className={`link ${pathname === '/categories/tel' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/tel">
-                Tel
+                🛢️ Tel
             </Link>
 
-            <Link className={`link ${pathname === '/categories/sobji' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/shobji">
-                Sobji
+            <Link className={`link ${pathname === '/categories/sobji' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/sobji">
+                🥬 Sobji
             </Link>
 
             <Link className={`link ${pathname === '/categories/mach' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/mach">
-                Mach
+                🐟 Mach
             </Link>
 
             <Link className={`link ${pathname === '/categories/mangsho' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/mangsho">
-                Mangsho
+                🍗 Mangsho
             </Link>
 
             <Link className={`link ${pathname === '/categories/dim-dui' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/dim-dui">
-                Dim-dui
+                🥛 Dim-dui
             </Link>
             
             <Link className={`link ${pathname === '/categories/mosla' ? 'bg-green-800 text-white dark:text-lime-400' : ''} rounded-full px-3 py-1`} href="/categories/mosla">
-                mosla
+                🌶️ mosla
             </Link>
         </nav>
     );

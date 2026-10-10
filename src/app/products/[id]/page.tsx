@@ -4,7 +4,7 @@ import { IProduct } from "@/types/IProduct";
 
 const getProductDetails = async (id: number) => {
     try {
-        const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products/${id}`, { cache: "force-cache" });
+        const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${id}`, { cache: "force-cache" });
         const data: IProduct = await res.json();
         return data;
     } catch (error) {
