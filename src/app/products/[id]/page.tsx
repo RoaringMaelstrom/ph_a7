@@ -22,8 +22,8 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
 
     const productData: IProduct | null = await getProductDetails(id);
 
-    if (productData === null) return (<div><h1>Failed to fetch product data</h1><Link href="/"><button className="btn btn-error">Return to Home</button></Link></div>);
-
+    if (productData === null) return (<div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="bg-base-300 p-3 rounded-xl">Failed to fetch product data</h1><Link href="/"><button className="btn btn-error">Return to Home</button></Link></div>);
+    
     const minPrice: number = Math.min(...productData.markets.map(marketPrice => marketPrice.min));
     const maxPrice: number = Math.max(...productData.markets.map(marketPrice => marketPrice.max));
 

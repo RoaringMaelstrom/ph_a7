@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ICategory } from "@/types/ICategory";
 import { IProduct } from "@/types/IProduct";
 
-import CategoryProducts from "@/components/client/CategoryProducts";
+import CategoryProducts from "@/components/Client/CategoryProducts";
 
 const getCategory = async (id: string) => {
     try {
@@ -39,21 +39,21 @@ const CategoryDetailsPage = async ({ params }: CategoryDetailsProps) => {
     const products: IProduct[] | null = await getCategoryProducts(id);
 
     if (category === null) {
-        return <div><h1 className="text-5xl text-red">FAILED TO LOAD CATEGORY</h1>
-            <Link href="/"><button>Click here to return to home</button></Link></div>;
+        return <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4"><h1 className="text-5xl bg-base-300 p-4 rounded-xl">FAILED TO LOAD CATEGORY</h1>
+            <Link href="/"><button className="btn btn-error">Click here to return to home</button></Link></div>;
     }
 
     if (products === null) {
-        return <div><h1 className="text-5xl text-red">FAILED TO LOAD PRODUCTS</h1>
-            <Link href="/"><button>Click here to return to home</button></Link></div>;
+        return <div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="text-5xl bg-base-300 p-4 rounded-xl">FAILED TO LOAD PRODUCTS</h1>
+            <Link href="/"><button className="btn btn-error">Click here to return to home</button></Link></div>;
     }
 
     return (
-        <div className="px-12 bg-zinc-300 dark:bg-black">
-            <div className="flex">
+        <div className="px-4 md:px-12 lg:px-24 my-12">
+            <div className="flex bg-base-200 p-5 rounded-xl">
                 <div className="text-6xl">{category.icon}</div>
                 <div>
-                    <h1>{category.id}</h1>
+                    <h1 className="font-bold text-3xl">{category.id}</h1>
                     <h1>{products.length} Products and their price changes</h1>
                 </div>
             </div>

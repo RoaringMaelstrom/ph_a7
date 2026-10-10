@@ -1,4 +1,5 @@
 import CategoryCard from "@/components/Card/CategoryCard";
+
 import { ICategory } from "@/types/ICategory";
 
 import Link from "next/link";
@@ -16,7 +17,7 @@ const getCategories = async() => {
 }
 
 const CategoriesPage = async() => {
-    const categories = await getCategories();
+    const categories: ICategory[] = await getCategories();
     return (
         <div className="px-30 flex flex-col gap-15 md:p-12 bg-zinc-300 dark:bg-black">
             <div className="text-5xl">Categories Available</div>

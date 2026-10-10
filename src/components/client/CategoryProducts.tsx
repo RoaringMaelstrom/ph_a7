@@ -26,22 +26,23 @@ const CategoryProducts = ({ products }: CategoryProductsProp) => {
     const [sortBy, setSortBy] = useState<number>(1)
 
     const sortedProducts = sortProduct(products, sortBy);
+
     return (
-        <div className="flex flex-col gap-4">
-            <div className="flex items-center">
-                <div className="ml-auto p-4">Sort By</div>
-                <select defaultValue="Default" className="select select-neutral">
+        <div className="flex  flex-col gap-4">
+            <div className="flex my-4 px-4 bg-base-200 rounded-xl items-center">
+                <div className="lg:ml-auto p-4">Sort By</div>
+                <select defaultValue="Default" className="select  select-neutral">
                     <option onClick={() => setSortBy(1)}>Default</option>
                     <option onClick={() => setSortBy(2)}>Price Ascending</option>
                     <option onClick={() => setSortBy(3)}>Price Descending</option>
                 </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {sortedProducts.map((product: IProduct) => (
                     <Link
                         key={product.id}
-                        href={`/`}
+                        href={`/products/${product.id}`}
                     >
                         <ProductCard
                             product={product}
