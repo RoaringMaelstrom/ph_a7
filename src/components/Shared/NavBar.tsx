@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import NavLinks from "./NavLinks";
-import NavBarDate from "../Client/NavBarDate";
+import NavBarDate from "../client/NavBarDate";
 import Logo from "./../../../public/logo-icon.png"
 
 const NavBar = async () => {

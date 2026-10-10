@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import BannerImg from "../../../public/bazar-hero.png";
-import BannerDate from "../Client/BannerDate";
+import BannerDate from "../client/BannerDate";
 
 const Banner = () => {
     return (

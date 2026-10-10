@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ICategory } from "@/types/ICategory";
 import { IProduct } from "@/types/IProduct";
 
-import CategoryProducts from "@/components/Client/CategoryProducts";
+import CategoryProducts from "@/components/client/CategoryProducts";
 
 const getCategory = async (id: string) => {
     try {
