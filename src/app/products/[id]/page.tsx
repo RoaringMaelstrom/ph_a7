@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
+
 import { IProduct } from "@/types/IProduct";
 
 const getProductDetails = async (id: number) => {
@@ -22,8 +24,8 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
 
     const productData: IProduct | null = await getProductDetails(id);
 
-    if (productData === null) return (<div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="bg-base-300 p-3 rounded-xl">Failed to fetch product data</h1><Link href="/"><button className="btn btn-error">Return to Home</button></Link></div>);
-    
+    if (productData === null) return (<div className="flex min-h-screen flex-col items-center justify-center gap-4"><h1 className="bg-base-300 p-3 rounded-xl">Failed to fetch productData data</h1><Link href="/"><button className="btn btn-error">Return to Home</button></Link></div>);
+
     const minPrice: number = Math.min(...productData.markets.map(marketPrice => marketPrice.min));
     const maxPrice: number = Math.max(...productData.markets.map(marketPrice => marketPrice.max));
 
@@ -49,10 +51,14 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
                         <h2>{`Relative to yesterday, today's price ${productData.change.dir === "flat" ? `is the same` : (productData.change.dir === "up" ? `increased ${productData.today - productData.yesterday}` : `decresed ${productData.yesterday - productData.today}`)} taka`}</h2>
                     </div>
                 </div>
-                <div className="bg-zinc-300 dark:bg-black md:ml-auto p-5 rounded-xl text-center md:text-left">
-                    <h2>{`Today's price`}</h2>
-                    <h1>{productData.today}</h1>
-                    <h3>Price per {productData.unit}</h3>
+                <div className="bg-zinc-300 dark:bg-black md:ml-auto p-5 rounded-xl gap-1 text-center items-center flex flex-col">
+                    <h2 className="text-sm text-slate-500">{`Today's price`}</h2>
+                    <h1 className="text-2xl font-bold">{productData.today}</h1>
+                    <h3 className="text-sm text-slate-500">Price per {productData.unit}</h3>
+                    <h2 className={`badge badge-soft bg-transparent border-none ${productData.change.dir === "flat" ? ("badge-ghost") : (productData.change.dir === "up" ? "badge-error" : "badge-success")} font-bold`}>
+                        {productData.change.dir === "flat" ? ("— ") : (productData.change.dir === "up" ? <FaCaretUp /> : <FaCaretDown />)}
+                        {Math.abs(productData.change.pct)} %
+                    </h2>
                 </div>
             </div>
 
@@ -60,19 +66,19 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
             <div className="bg-base-200 p-4 md:p-5 my-4 rounded-xl">
                 <h1 className="font-bold text-xl">Price Summary</h1>
                 <div className="flex  py-4">
-                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto">
+                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto text-center md:text-left">
                         <h2>Minimum Price</h2>
                         <h1 className="text-emerald-800 text-2xl font-bold">{minPrice} <span className="text-xl font-medium">taka</span></h1>
                         <h2>Lowest available market price</h2>
                     </div>
-                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto">
+                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto text-center md:text-left">
                         <h2>Maximum Price</h2>
                         <h1 className="text-red-700 text-2xl font-bold">{maxPrice} <span className="text-xl font-medium">taka</span></h1>
                         <h2>Maximum available market price</h2>
                     </div>
-                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto">
+                    <div className="border-2 border-gray-300 w-[30%] rounded-xl p-4 mr-auto text-center md:text-left">
                         <h2>Maximum Price</h2>
-                        <h1 className="text-emerald-800 text-2xl font-bold">{(maxPrice + minPrice)/2} <span className="text-xl font-medium">taka</span></h1>
+                        <h1 className="text-emerald-800 text-2xl font-bold">{(maxPrice + minPrice) / 2} <span className="text-xl font-medium">taka</span></h1>
                         <h2>Average price per-{productData.unit}</h2>
                     </div>
                 </div>

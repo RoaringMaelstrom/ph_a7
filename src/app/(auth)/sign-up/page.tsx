@@ -23,37 +23,44 @@ const SignUpPage = () => {
         });
 
         if (resData) {
-            console.log(resData);
             toast.success("You have successfully created an account");
         }
 
         if (error) {
-            console.log(error)
+            console.error(error)
             toast.error("Failed to create an account")
         }
     };
 
     const handleGoogleSignIn = async () => {
-        const data = await signIn.social({
+        const { data, error } = await signIn.social({
             provider: "google",
+            callbackURL: "/",
         });
+
+        if (error) {
+            toast.error("Google sign-in failed");
+            console.error("Google sign-in failed:", error);
+            return;
+        }
+
+        toast.success("Google sign-in initiated");
     };
 
     const handleGithubSignIn = async () => {
-    const { data, error } = await signIn.social({
-        provider: "github",
-        callbackURL: "/",
-    });
+        const { data, error } = await signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
 
-    if (error) {
-        toast.error("GitHub sign-in failed");
-        console.error("GitHub sign-in failed:", error);
-        return;
-    }
-    
-    toast.success("GitHub sign-in initiated");
-    console.log("GitHub sign-in initiated:", data);
-};
+        if (error) {
+            toast.error("GitHub sign-in failed");
+            console.error("GitHub sign-in failed:", error);
+            return;
+        }
+
+        toast.success("GitHub sign-in initiated");
+    };
 
     return (
         <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4 py-6 md:py-0">
@@ -85,7 +92,7 @@ const SignUpPage = () => {
                     <button onClick={() => handleGoogleSignIn()} className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
                     <button onClick={() => handleGithubSignIn()} className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
                 </div>
-                <div className="text-center text-sm"><h1>Have an account? <Link href="/sign-in" scroll={false} className="text-green-700">Sign in</Link></h1></div>
+                <div className="text-center text-sm"><h1>Have an account? <Link href="/sign-in" scroll={false} className="text-green-700">Sign Up</Link></h1></div>
             </div>
 
             <div className="text-slate-700 text-base">

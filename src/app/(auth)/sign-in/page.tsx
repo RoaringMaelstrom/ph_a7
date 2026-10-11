@@ -15,7 +15,6 @@ const SignInPage = () => {
         setIsLoading(true);
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
-        console.log('form er data', data)
 
         try {
             const { error } = await signIn.email({
@@ -38,15 +37,33 @@ const SignInPage = () => {
     };
 
     const handleGoogleSignIn = async () => {
-        const data = await signIn.social({
+        const { data, error } = await signIn.social({
             provider: "google",
+            callbackURL: "/",
         });
+
+        if (error) {
+            toast.error("Google sign-in failed");
+            console.error("Google sign-in failed:", error);
+            return;
+        }
+
+        toast.success("Google sign-in initiated");
     };
 
     const handleGithubSignIn = async () => {
-        const data = await signIn.social({
+        const { data, error } = await signIn.social({
             provider: "github",
+            callbackURL: "/",
         });
+
+        if (error) {
+            toast.error("GitHub sign-in failed");
+            console.error("GitHub sign-in failed:", error);
+            return;
+        }
+
+        toast.success("GitHub sign-in initiated");
     };
 
     return (

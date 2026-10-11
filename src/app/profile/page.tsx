@@ -1,7 +1,8 @@
 'use client'
 
-import { signOut, useSession } from "@/lib/auth-client";
+import { signOut, updateUser, useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
     const handleSignOut = async () => {
@@ -12,6 +13,23 @@ const ProfilePage = () => {
 
     const { data } = useSession();
     const user = data?.user;
+    
+    const handleUpdateUser = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const userData = Object.fromEntries(formData.entries())
+
+        const { error} = await updateUser({
+            name: String(userData.name).trim()
+        })
+
+        if (error) {
+            toast.error(String(error));
+            console.error("error updating data ", error)
+        }
+
+        toast.success("Successfully updated data")
+    };
 
     return (
 
@@ -22,16 +40,16 @@ const ProfilePage = () => {
             <div className="flex flex-col md:flex-row items-center gap-3 rounded-lg w-sm md:w-md lg:w-lg border border-base-300 bg-base-100 p-3">
 
                 <div className="flex h-40 md:h-20 w-40 md:w-20 shrink-0 items-center justify-center rounded-lg bg-base-200 p-2">
-                        <img
-                            src={user?.image as string}
-                            alt={`${user?.name} image`}
-                            width={90}
-                            height={90}
-                            className="h-full w-full object-contain"
-                        />
+                    <img
+                        src={user?.image as string}
+                        alt={`${user?.name} image`}
+                        width={90}
+                        height={90}
+                        className="h-full w-full object-contain"
+                    />
                 </div>
 
-                <div className="min-w-0 flex-1 flex-col gap-2 text-left">
+                <div className="min-w-0 flex-1 flex-col gap-2 lg:text-left">
                     <h3 className="truncate font-semibold">
                         {user?.name}
                     </h3>
@@ -47,7 +65,7 @@ const ProfilePage = () => {
 
             <div className="fieldset bg-base-200 border-base-300 rounded-box w-sm md:w-md lg:w-lg border p-4">
                 <h1 className="text-xl font-bold text-left">Information</h1>
-                <form >
+                <form onSubmit={handleUpdateUser}>
                     <fieldset className="w-auto flex flex-col">
                         <legend className="fieldset-legend"></legend>
 
