@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const { data } = useSession();
     const user = data?.user;
     
-    const handleUpdateUser = async (e) => {
+    const handleUpdateUser = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries())
