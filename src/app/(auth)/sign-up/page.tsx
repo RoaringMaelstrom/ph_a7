@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 import Link from "next/link";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 
 const SignUpPage = () => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,6 +32,28 @@ const SignUpPage = () => {
             toast.error("Failed to create an account")
         }
     };
+
+    const handleGoogleSignIn = async () => {
+        const data = await signIn.social({
+            provider: "google",
+        });
+    };
+
+    const handleGithubSignIn = async () => {
+    const { data, error } = await signIn.social({
+        provider: "github",
+        callbackURL: "/",
+    });
+
+    if (error) {
+        toast.error("GitHub sign-in failed");
+        console.error("GitHub sign-in failed:", error);
+        return;
+    }
+    
+    toast.success("GitHub sign-in initiated");
+    console.log("GitHub sign-in initiated:", data);
+};
 
     return (
         <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4 py-6 md:py-0">
@@ -60,8 +82,8 @@ const SignUpPage = () => {
 
                 {/*Alternet Sign Up*/}
                 <div className='flex gap-2'>
-                    <button className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
-                    <button className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
+                    <button onClick={() => handleGoogleSignIn()} className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
+                    <button onClick={() => handleGithubSignIn()} className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
                 </div>
                 <div className="text-center text-sm"><h1>Have an account? <Link href="/sign-in" scroll={false} className="text-green-700">Sign in</Link></h1></div>
             </div>

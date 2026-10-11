@@ -37,6 +37,18 @@ const SignInPage = () => {
         }
     };
 
+    const handleGoogleSignIn = async () => {
+        const data = await signIn.social({
+            provider: "google",
+        });
+    };
+
+    const handleGithubSignIn = async () => {
+        const data = await signIn.social({
+            provider: "github",
+        });
+    };
+
     return (
         <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4 py-6 md:py-0">
             <h1 className='font-bold text-3xl'>Sign In</h1>
@@ -59,8 +71,8 @@ const SignInPage = () => {
 
                 <div className="divider">OR</div>
                 <div className='flex gap-2'>
-                    <button className='btn btn-outline'><FcGoogle />Sign In with Google</button>
-                    <button className='btn btn-outline border-stale-200'><AiFillGithub />Sign In with Github</button>
+                    <button onClick={() => handleGoogleSignIn()} disabled={isLoading} className='btn btn-outline'><FcGoogle />Sign In with Google</button>
+                    <button onClick={() => handleGithubSignIn()} disabled={isLoading} className='btn btn-outline border-stale-200'><AiFillGithub />Sign In with Github</button>
                 </div>
                 <div className="text-center text-sm"><h1>Do not have an account? <Link href="/sign-up" scroll={false} className="text-green-700">Create an account</Link></h1></div>
             </div>
