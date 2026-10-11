@@ -3,6 +3,7 @@
 import { BsBoxArrowLeft } from "react-icons/bs";
 import { FcBusinessman } from "react-icons/fc";
 import { FaCaretDown } from "react-icons/fa6";
+import { LuCircleUserRound } from "react-icons/lu";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -58,8 +59,30 @@ const SessionInfo = () => {
             </>
                 :
                 <>
-                    <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
-                    <Link href='/sign-up' className="btn btn-accent">Sign Up</Link>
+                    <div className="dropdown dropdown-end dropdown-hover p-6">
+                        <div tabIndex={0} role="button" className="flex items-center justify-center gap-2 md:gap-3 rounded-xl p-1
+                   bg-transparent border-none shadow-none
+                   hover:bg-base-200
+                   focus:outline-none focus-visible:ring-2
+                   focus-visible:ring-primary m-1">
+                            <div className="flex items-center text-lg text-emerald-500 justify-center hover:bg-base-300 py-5 px-3 gap-2 md:gap-3">
+                                <LuCircleUserRound /><FaCaretDown />
+                            </div>
+                        </div>
+                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 mt-4 shadow-sm">
+                            <li><Link href='/sign-in' className="btn btn-ghost">Sign In</Link></li>
+                            <li><Link href='/sign-up' className="btn btn-accent">Sign Up</Link></li>
+                        </ul>
+                    </div>
+                    {/* <div className="dropdown dropdown-bottom dropdown-end">
+                        <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
+                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                            <li><a>Item 1</a></li>
+                            <li><a>Item 2</a></li>
+                        </ul>
+                    </div> */}
+                    {/* <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
+                    <Link href='/sign-up' className="btn btn-accent">Sign Up</Link> */}
                 </>
         }
     </>

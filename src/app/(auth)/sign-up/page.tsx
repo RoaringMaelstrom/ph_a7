@@ -65,7 +65,7 @@ const SignUpPage = () => {
     return (
         <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4 py-6 md:py-0">
             <h1 className='font-bold text-3xl'>Create an Account</h1>
-            <h2 className='text-slate-600'>Sign up for free and see all the detailed prices</h2>
+            <h2 className='text-slate-600 w-[80%]'>Sign up for free and see all the detailed prices</h2>
 
             <div className="fieldset bg-base-200 border-base-300 rounded-box w-auto border p-4">
                 <form onSubmit={onSubmit} >
@@ -82,13 +82,13 @@ const SignUpPage = () => {
                         <input required name="password" type="password" className="input w-full" placeholder="Atleast 8 characters" autoComplete="new-password" minLength={8}
                             pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}" />
 
-                        <button type="submit" className="btn btn-neutral mt-4">Login</button>
+                        <button type="submit" className="btn btn-neutral mt-4">Sign Up</button>
                     </fieldset>
                 </form>
                 <div className="divider">OR</div>
 
                 {/*Alternet Sign Up*/}
-                <div className='flex gap-2'>
+                <div className='flex flex-col md:flex-row gap-2'>
                     <button onClick={() => handleGoogleSignIn()} className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
                     <button onClick={() => handleGithubSignIn()} className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
                 </div>

@@ -79,7 +79,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
                         <h2>Maximum available market price</h2>
                     </div>
                     <div className="border-2 border-gray-300 w-full md:w-[30%] rounded-xl p-4 mr-auto text-center md:text-left">
-                        <h2>Maximum Price</h2>
+                        <h2>Average Price</h2>
                         <h1 className="text-emerald-800 text-2xl font-bold">{(maxPrice + minPrice) / 2} <span className="text-xl font-medium">taka</span></h1>
                         <h2>Average price per{` - ${productData.unit}`}</h2>
                     </div>

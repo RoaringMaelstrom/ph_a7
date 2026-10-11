@@ -29,21 +29,27 @@ const NavBar = () => {
                             </Suspense>
                         </ul>
                     </div>
-                    <Link href="/" className="flex gap-3 pl-0 py-8 items-center btn btn-ghost text-xl">
-                        <div className="bg-green-600 p-6 md:p-3 rounded-xl">
+                    <Link
+                        href="/"
+                        className="flex min-w-0 items-center gap-2 px-1 py-2"
+                    >
+                        <div className="shrink-0 rounded-xl bg-green-600 p-2">
                             <Image
                                 src={Logo}
                                 alt="Site Logo"
-                                height={40}
                                 width={40}
+                                height={40}
                                 className="h-5 w-5 object-contain"
                             />
                         </div>
-                        <div>
-                            <h1 className="text-sm md:text-xl font-bold ">
+
+                        <div className="min-w-0">
+                            <h1 className="text-sm md:text-xl font-bold whitespace-nowrap">
                                 BAZAR DOR
                             </h1>
-                                <span className="text-xs font-medium"><NavBarDate /></span>
+                            <span className="text-xs font-medium whitespace-nowrap">
+                                <NavBarDate />
+                            </span>
                         </div>
                     </Link>
                 </div>
@@ -51,8 +57,8 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-end gap-2">
                     <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
-                    {<SessionInfo />}
-                </Suspense>
+                        {<SessionInfo />}
+                    </Suspense>
                 </div>
             </div>
             <div className="px-2 md:px-12 lg:px-24 bg-base-200 hidden lg:flex">

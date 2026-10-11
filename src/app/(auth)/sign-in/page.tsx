@@ -69,7 +69,7 @@ const SignInPage = () => {
     return (
         <div className="flex min-h-screen flex-col items-center text-center justify-center gap-4 py-6 md:py-0">
             <h1 className='font-bold text-3xl'>Sign In</h1>
-            <h2 className='text-slate-600'>Log in to your account to see detailed prices, market comparisons, and profiles</h2>
+            <h2 className='text-slate-600 w-[80%]'>Log in to your account to see detailed prices, market comparisons, and profiles</h2>
 
             <div className="fieldset bg-base-200 border-base-300 rounded-box w-auto border p-4">
                 <form onSubmit={onSubmit}>
@@ -87,7 +87,7 @@ const SignInPage = () => {
                 </form>
 
                 <div className="divider">OR</div>
-                <div className='flex gap-2'>
+                <div className='flex flex-col md:flex-row gap-2'>
                     <button onClick={() => handleGoogleSignIn()} disabled={isLoading} className='btn btn-outline'><FcGoogle />Sign In with Google</button>
                     <button onClick={() => handleGithubSignIn()} disabled={isLoading} className='btn btn-outline border-stale-200'><AiFillGithub />Sign In with Github</button>
                 </div>
