@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { Suspense } from "react";
+
 import { Toaster } from "react-hot-toast";
 import NavBar from "@/components/Shared/NavBar";
 import Footer from "@/components/Shared/Footer";
@@ -28,7 +30,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Suspense fallback="loading loading-dots">
         <NavBar />
+        </Suspense>
         <Toaster />
         {children}
         <Footer />

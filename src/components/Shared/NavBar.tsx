@@ -1,12 +1,17 @@
+
+
 import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+
 import NavLinks from "./NavLinks";
 import NavBarDate from "../client/NavBarDate";
+import SessionInfo from "./SessionInfo";
 import Logo from "./../../../public/logo-icon.png"
 
-const NavBar = async () => {
+const NavBar = () => {
+
 
     return (
         <div className="shadow-sm">
@@ -29,25 +34,25 @@ const NavBar = async () => {
                             <Image
                                 src={Logo}
                                 alt="Site Logo"
-
-                                className="object-contain"
+                                height={40}
+                                width={40}
+                                className="h-5 w-5 object-contain"
                             />
                         </div>
                         <div>
                             <h1 className="text-sm md:text-xl font-bold ">
                                 BAZAR DOR
                             </h1>
-                            <Suspense fallback="loading loading-dots">
-                            <span className="text-xs font-medium"><NavBarDate/></span>
-                            </Suspense>
+                                <span className="text-xs font-medium"><NavBarDate /></span>
                         </div>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                 </div>
                 <div className="navbar-end gap-2">
-                    <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
-                    <Link href='/sign-up' className="btn btn-accent">Sign Up</Link>
+                    <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
+                    {<SessionInfo />}
+                </Suspense>
                 </div>
             </div>
             <div className="px-2 md:px-12 lg:px-24 bg-base-200 hidden lg:flex">
