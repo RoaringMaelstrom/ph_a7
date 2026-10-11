@@ -22,14 +22,13 @@ const ProfilePage = () => {
             <div className="flex flex-col md:flex-row items-center gap-3 rounded-lg w-sm md:w-md lg:w-lg border border-base-300 bg-base-100 p-3">
 
                 <div className="flex h-40 md:h-20 w-40 md:w-20 shrink-0 items-center justify-center rounded-lg bg-base-200 p-2">
-                    {user?.image ?
-                        (<img
+                        <img
                             src={user?.image as string}
                             alt={`${user?.name} image`}
                             width={90}
                             height={90}
                             className="h-full w-full object-contain"
-                        />) : <>IMAGE NOT FOUND</>}
+                        />
                 </div>
 
                 <div className="min-w-0 flex-1 flex-col gap-2 text-left">
