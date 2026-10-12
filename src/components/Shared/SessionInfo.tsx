@@ -51,7 +51,9 @@ const SessionInfo = () => {
                             <FaCaretDown />
                         </div>
                     </div>
-                    <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                    <ul tabIndex={-1} className="dropdown-content menu bg-base-200 border-1 border-gray-400 rounded-box z-100 w-auto p-2 shadow-sm">
+                        <li className="text-lg font-bold">{session.user.name}</li>
+                        <li className="text-slate-500">{session.user.email}</li>
                         <li><Link href="/profile"><FcBusinessman /> My Profile</Link></li>
                         <li><button onClick={handleSignOut} className="btn btn-error btn-ghost justify-start w-full"> <BsBoxArrowLeft /> Sign Out</button></li>
                     </ul>
@@ -73,7 +75,7 @@ const SessionInfo = () => {
                                 <LuCircleUserRound /><FaCaretDown />
                             </div>
                         </div>
-                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-500 w-52 p-2 shadow-sm">
                             <li><Link href='/sign-in' className="btn btn-ghost">Sign In</Link></li>
                             <li><Link href='/sign-up' className="btn btn-accent">Sign Up</Link></li>
                         </ul>

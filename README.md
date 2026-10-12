@@ -1,36 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Project name: Bazar Dor
 
-## Getting Started
+Bazar Dor is a website which allows you to see the current market prices, on the go. Being up-to-date with the latest market data, it allows you to see how the prices are changing and the markets are shifting — including the percentage change and the absolute difference. While the cards show an overview of the data, bring logged in allows you to see district-by-district breakdown of each product.
 
-First, run the development server:
+The website was made using Nextjs, TypeScript, MongoDB, TailwindCSS, DaisyUI, react-hot-toast, react-fast-marquee.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The website features:
+- A log-in and sign-in page with persistant memory to save accounts, handling email sign-up, and google and github authentication
+- Resposive design to accomodate mobile, tablet, and larger screens
+- A proxy, which allows the website to safeguard the sensitive data
+- A marquee, which allows to to glance at the changing prices anywhere on the website
+- Toasts to verify successful connection to the database server and successfull authentication attempt
+- A suitable colour theme for dark mode on the entire website (Still no switch button implemented)

@@ -33,7 +33,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
 
     return (
 
-        <div className="md:px-12 lg:px-24 mx-5 dark:bg-black ">
+        <div className="md:px-12 lg:px-24 px-5 dark:bg-black ">
 
             {/*Detailed Product Card*/}
             <div className="breadcrumbs breadcrums-secondary text-sm  my-8">

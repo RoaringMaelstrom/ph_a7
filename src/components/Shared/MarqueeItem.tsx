@@ -23,7 +23,7 @@ const MarqueeItem = async () => {
     return (
         <Marquee>
 
-            <div className="flex ">
+            <div className="flex z-0">
                 {priceChanges.map((product: IProduct) => (
                     <Link
                         key={product.id}
