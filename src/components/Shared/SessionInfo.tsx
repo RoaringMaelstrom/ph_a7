@@ -27,7 +27,7 @@ const SessionInfo = () => {
     const authLinks = <>
         {
             session?.user ? <>
-                <div className="dropdown dropdown-hover">
+                <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="flex items-center justify-center gap-2 md:gap-3
                    rounded-xl p-1
                    bg-transparent border-none shadow-none
@@ -45,7 +45,7 @@ const SessionInfo = () => {
                                 </div>
                             </div>
 
-                            <h1 className="text-sm md:text-base font-bold  text-center md:text-left max-w-40 md:max-w-70 truncate">
+                            <h1 className="text-sm md:text-base font-bold  text-center md:text-left max-w-25 max-w-20 md:max-w-70 truncate">
                                 {session.user.name}
                             </h1>
                             <FaCaretDown />
@@ -59,30 +59,25 @@ const SessionInfo = () => {
             </>
                 :
                 <>
-                    <div className="dropdown dropdown-end dropdown-hover p-6">
+                    <div className="hidden md:flex items-center gap-3">
+                        <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
+                        <Link href='/sign-up' className="btn btn-accent">Sign Up</Link>
+                    </div>
+                    <div className="dropdown dropdown-end md:hidden p-2 ">
                         <div tabIndex={0} role="button" className="flex items-center justify-center gap-2 md:gap-3 rounded-xl p-1
-                   bg-transparent border-none shadow-none
-                   hover:bg-base-200
-                   focus:outline-none focus-visible:ring-2
-                   focus-visible:ring-primary m-1">
-                            <div className="flex items-center text-lg text-emerald-500 justify-center hover:bg-base-300 py-5 px-3 gap-2 md:gap-3">
+                        bg-transparent border-none shadow-none
+                        hover:bg-base-200
+                        focus:outline-none focus-visible:ring-2
+                        focus-visible:ring-primary m-1">
+                            <div className="flex items-center text-lg text-emerald-500 justify-center hover:bg-base-300 py-7 px-5 gap-2 md:gap-3">
                                 <LuCircleUserRound /><FaCaretDown />
                             </div>
                         </div>
-                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 mt-4 shadow-sm">
+                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                             <li><Link href='/sign-in' className="btn btn-ghost">Sign In</Link></li>
                             <li><Link href='/sign-up' className="btn btn-accent">Sign Up</Link></li>
                         </ul>
                     </div>
-                    {/* <div className="dropdown dropdown-bottom dropdown-end">
-                        <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
-                        <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 2</a></li>
-                        </ul>
-                    </div> */}
-                    {/* <Link href='/sign-in' className="btn btn-ghost">Sign In</Link>
-                    <Link href='/sign-up' className="btn btn-accent">Sign Up</Link> */}
                 </>
         }
     </>

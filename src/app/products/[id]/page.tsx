@@ -29,18 +29,19 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
     const minPrice: number = Math.min(...productData.markets.map(marketPrice => marketPrice.min));
     const maxPrice: number = Math.max(...productData.markets.map(marketPrice => marketPrice.max));
 
-    const directionText = productData.change.dir === "flat" ? `is the same` : (productData.change.dir === "up" ? `increased ${productData.today - productData.yesterday} taka` : `decresed ${productData.yesterday - productData.today} taka`);
+    const directionText = productData.change.dir === "flat" ? `is the same` : (productData.change.dir === "up" ? `increased 󠁯•󠁏 ${productData.today - productData.yesterday} taka` : `decresed 󠁯•󠁏 ${productData.yesterday - productData.today} taka`);
 
     return (
 
         <div className="md:px-12 lg:px-24 mx-5 dark:bg-black ">
 
             {/*Detailed Product Card*/}
-            <div className="breadcrumbs text-sm  my-8">
+            <div className="breadcrumbs breadcrums-secondary text-sm  my-8">
                 <ul>
                     <li><Link href="/">Home</Link></li>
-                    <li><Link href="/categories">{productData.category}</Link></li>
-                    <li>{productData.slug}</li>
+                    <li><Link href="/categories">Category</Link></li>
+                    <li><Link href={`/categories/${productData.category}`}>{productData.category}</Link></li>
+                    <li><span className="text-green-800">{productData.slug}</span></li>
                 </ul>
             </div>
 
@@ -49,7 +50,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsProps) => {
                     <div className="text-6xl bg-zinc-300 dark:bg-black py-4 mx:auto text-center rounded-xl">{productData.categoryIcon}</div>
                     <div className="text-center md:text-left">
                         <h1 className="font-bold text-3xl">{productData.slug}</h1>
-                        <h6 className="opacity-60">per {productData.unit} . {productData.category}</h6>
+                        <h6 className="opacity-60">per {productData.unit} 󠁯•󠁏 {productData.category}</h6>
                         <h2>{`Relative to yesterday, today's price ${directionText}`}</h2>
                     </div>
                 </div>

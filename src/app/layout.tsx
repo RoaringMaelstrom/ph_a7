@@ -6,6 +6,7 @@ import { Suspense } from "react";
 
 import { Toaster } from "react-hot-toast";
 import NavBar from "@/components/Shared/NavBar";
+import MarqueeItem from "@/components/Shared/MarqueeItem";
 import Footer from "@/components/Shared/Footer";
 
 const geistSans = Geist({
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Suspense fallback="loading loading-dots">
         <NavBar />
+        <MarqueeItem />
         </Suspense>
         <Toaster />
         {children}

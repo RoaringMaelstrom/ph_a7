@@ -25,7 +25,7 @@ const CategoriesPage = async () => {
     }
     
     return (
-        <div className="px-30 flex flex-col gap-15 md:p-12 bg-zinc-300 dark:bg-black">
+        <div className="px-4 md:px-12 lg:px-24 flex flex-col gap-15 py-15">
             <div className="text-5xl">Categories Available</div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 ">
                 {categories.map((category: ICategory) => (
