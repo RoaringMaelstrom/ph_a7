@@ -17,15 +17,20 @@ const SignInPage = () => {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const { error } = await signIn.email({
+            const { data: resData, error } = await signIn.email({
                 email: String(data.email).trim(),
                 password: data.password as string,
                 rememberMe: true,
                 callbackURL: '/'
             })
+
             if (error) {
                 toast.error(error.message || "Failed to sign in.");
                 return;
+            }
+
+            if (resData) {
+                toast.success("You have successfully signed in");
             }
 
         } catch (error) {
@@ -37,22 +42,24 @@ const SignInPage = () => {
     };
 
     const handleGoogleSignIn = async () => {
-        const { data, error } = await signIn.social({
+        const { error } = await signIn.social({
             provider: "google",
             callbackURL: "/",
         });
 
         if (error) {
-            toast.error("Google sign-in failed");
+            toast.error(error.message as string);
             console.error("Google sign-in failed:", error);
             return;
         }
 
         toast.success("Google sign-in initiated");
+
+
     };
 
     const handleGithubSignIn = async () => {
-        const { data, error } = await signIn.social({
+        const { error } = await signIn.social({
             provider: "github",
             callbackURL: "/",
         });
@@ -82,14 +89,14 @@ const SignInPage = () => {
                         <label className="label font-bold">Password</label>
                         <input required name="password" type="password" className="input w-full" placeholder="Atleast 8 characters" autoComplete="current-password" />
 
-                        <button disabled={isLoading} className="btn btn-neutral mt-4">Login</button>
+                        <button disabled={isLoading} className="btn btn-neutral mt-4">{isLoading ? "Signing in..." : "Log in"}</button>
                     </fieldset>
                 </form>
 
                 <div className="divider">OR</div>
                 <div className='flex flex-col md:flex-row gap-2'>
-                    <button onClick={() => handleGoogleSignIn()} disabled={isLoading} className='btn btn-outline'><FcGoogle />Sign In with Google</button>
-                    <button onClick={() => handleGithubSignIn()} disabled={isLoading} className='btn btn-outline border-stale-200'><AiFillGithub />Sign In with Github</button>
+                    <button onClick={() => handleGoogleSignIn()} disabled={isLoading} className='btn btn-outline'><FcGoogle />Sign in with Google</button>
+                    <button onClick={() => handleGithubSignIn()} disabled={isLoading} className='btn btn-outline border-stale-200'><AiFillGithub />Sign In with Github"</button>
                 </div>
                 <div className="text-center text-sm"><h1>Do not have an account? <Link href="/sign-up" scroll={false} className="text-green-700">Create an account</Link></h1></div>
             </div>

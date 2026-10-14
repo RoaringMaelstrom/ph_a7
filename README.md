@@ -8,6 +8,6 @@ The website features:
 - A log-in and sign-in page with persistant memory to save accounts, handling email sign-up, and google and github authentication
 - Resposive design to accomodate mobile, tablet, and larger screens
 - A proxy, which allows the website to safeguard the sensitive data
-- A marquee, which allows to to glance at the changing prices anywhere on the website
+- A marquee, which allows to to glance at the changing prices anywhere on the website, which also acts as a link
 - Toasts to verify successful connection to the database server and successfull authentication attempt
 - A suitable colour theme for dark mode on the entire website (Still no switch button implemented)

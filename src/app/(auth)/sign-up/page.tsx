@@ -5,35 +5,56 @@ import { AiFillGithub, AiOutlineArrowLeft } from "react-icons/ai";
 import toast from "react-hot-toast";
 
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { signIn, signUp } from "@/lib/auth-client";
 
+
 const SignUpPage = () => {
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const router = useRouter();
+
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitting(true)
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        const { data: resData, error } = await signUp.email({
-            name: String(data.name).trim(),
-            email: String(data.email).trim(),
-            password: data.password as string,
-            callbackURL: '/',
-        });
-
-        if (resData) {
-            toast.success("You have successfully created an account");
+        if (String(data.password) === String(data.confirmPassword)) {
+            toast.error("Passwords do not match")
+            return
         }
 
-        if (error) {
-            console.error(error)
-            toast.error("Failed to create an account")
+        try {
+            const { data: resData, error } = await signUp.email({
+                name: String(data.name).trim(),
+                email: String(data.email).trim(),
+                password: data.password as string,
+                callbackURL: '/',
+            });
+
+            if (resData) {
+                toast.success("You have successfully created an account");
+                router.replace("/");
+            }
+
+            if (error) {
+                console.error(error)
+                toast.error(error.message as string)
+            }
+
+        } catch (error) {
+            console.error("Unexpected sign-up error:", error);
+            toast.error("Something went wrong. Please try again.");
+        } finally {
+            setIsSubmitting(false)
         }
     };
 
     const handleGoogleSignIn = async () => {
-        const { data, error } = await signIn.social({
+        const { error } = await signIn.social({
             provider: "google",
             callbackURL: "/",
         });
@@ -48,7 +69,7 @@ const SignUpPage = () => {
     };
 
     const handleGithubSignIn = async () => {
-        const { data, error } = await signIn.social({
+        const { error } = await signIn.social({
             provider: "github",
             callbackURL: "/",
         });
@@ -82,15 +103,19 @@ const SignUpPage = () => {
                         <input required name="password" type="password" className="input w-full" placeholder="Atleast 8 characters" autoComplete="new-password" minLength={8}
                             pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}" />
 
-                        <button type="submit" className="btn btn-neutral mt-4">Sign Up</button>
+                        <label className="label font-bold">Confirm password</label>
+                        <input required name="confirmPassword" type="password" className="input w-full" placeholder="Atleast 8 characters" autoComplete="new-password" minLength={8}
+                            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}" />
+
+                        <button disabled={isSubmitting} type="submit" className="btn btn-neutral mt-4">{isSubmitting ? "Submitting..." : "Sign Up"}</button>
                     </fieldset>
                 </form>
                 <div className="divider">OR</div>
 
                 {/*Alternet Sign Up*/}
                 <div className='flex flex-col md:flex-row gap-2'>
-                    <button onClick={() => handleGoogleSignIn()} className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
-                    <button onClick={() => handleGithubSignIn()} className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
+                    <button onClick={() => handleGoogleSignIn()} disabled={isSubmitting} className='btn btn-outline border-slate-200'><FcGoogle />Sign In with Google</button>
+                    <button onClick={() => handleGithubSignIn()} disabled={isSubmitting} className='btn btn-outline border-slate-200'><AiFillGithub />Sign In with Github</button>
                 </div>
                 <div className="text-center text-sm"><h1>Have an account? <Link href="/sign-in" scroll={false} className="text-green-700">Sign Up</Link></h1></div>
             </div>
