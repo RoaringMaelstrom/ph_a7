@@ -22,7 +22,7 @@ const SignUpPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        if (String(data.password) === String(data.confirmPassword)) {
+        if (String(data.password) !== String(data.confirmPassword)) {
             toast.error("Passwords do not match");
             setIsSubmitting(false);
             return
